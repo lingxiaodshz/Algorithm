@@ -10,12 +10,12 @@ public class Test02 {
 		System.out.println(test02.countZero(11));
 	}
 
-	public int countZero(int x) {
+	public long countZero(long x) {
 		if (x < 1) {
 			return 0;
 		}
-		int temp = x;
-		int sum = 0;
+		long temp = x;
+		long sum = 0;
 
 		while (temp / 5 != 0) {
 			sum += temp / 5;
