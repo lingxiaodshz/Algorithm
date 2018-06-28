@@ -20,11 +20,16 @@ public class SortUtils {
 		if (arr == null || arr.length <= 1) {
 			return;
 		}
+		int index;
 		for (int i = 0; i < arr.length; i++) {
+			index = i;
 			for (int j = i; j < arr.length; j++) {
 				if (arr[i] > arr[j]) {
-					swap(arr, i, j);
+					index = j;
 				}
+			}
+			if (index != i) {
+				swap(arr, i, index);
 			}
 		}
 
