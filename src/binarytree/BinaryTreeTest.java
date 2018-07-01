@@ -41,7 +41,7 @@ class BinaryTree {
 			} else if (value > currentNode.value) {
 				currentNode = currentNode.rightChildNode;
 			}
-			
+
 			if (currentNode == null) {
 				return null;
 			}
@@ -49,8 +49,37 @@ class BinaryTree {
 	}
 
 	// 插入
-	public String insert(int value) {
-		return null;
+	public boolean insert(int value) {
+		if (root == null) {
+			root.value = value;
+			root.leftChildNode = null;
+			root.rightChildNode = null;
+			return true;
+		} else {
+			Node currentNode = root;
+			Node parentNode = null;
+			while (true) {
+				if (value < currentNode.value) {
+					parentNode = currentNode;
+					currentNode = currentNode.leftChildNode;
+					if (currentNode == null) {
+						parentNode.leftChildNode = new Node(value);
+						return true;
+					}
+				} else if (value > currentNode.value) {
+					parentNode = currentNode;
+					currentNode = currentNode.rightChildNode;
+					if (currentNode == null) {
+						parentNode.rightChildNode = new Node(value);
+						return true;
+					}
+				} else {
+					// value已经存在返回false
+					return false;
+				}
+			}
+		}
+
 	}
 
 	// 中序遍历递归操作
