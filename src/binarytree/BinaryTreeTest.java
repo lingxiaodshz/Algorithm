@@ -1,5 +1,7 @@
 package binarytree;
 
+import java.util.Stack;
+
 public class BinaryTreeTest {
 
 	public static void main(String[] args) {
@@ -63,6 +65,7 @@ class BinaryTree {
 					parentNode = currentNode;
 					currentNode = currentNode.leftChildNode;
 					if (currentNode == null) {
+						// 此处必须用parent，因为current已经为null了
 						parentNode.leftChildNode = new Node(value);
 						return true;
 					}
@@ -83,13 +86,33 @@ class BinaryTree {
 	}
 
 	// 中序遍历递归操作
-	public void inOrderTraverse() {
-
+	public void inOrderTraverse(Node node) {
+		if (node == null) {
+			return;
+		}
+		inOrderTraverse(node.leftChildNode);
+		System.out.println(node.value);
+		inOrderTraverse(node.rightChildNode);
 	}
 
 	// 中序遍历非递归操作
-	public void inOrderByStack() {
-
+	public void inOrderByStack(Node node) {
+		if (node == null) {
+			return;
+		}
+		Stack<Node> stack = new Stack<Node>();
+		Node currentNode = node;
+		while (currentNode != null || !stack.isEmpty()) {
+			while (currentNode != null) {
+				stack.push(currentNode);
+				currentNode = currentNode.leftChildNode;
+			}
+			if (!stack.isEmpty()) {
+				currentNode = stack.pop();
+				System.out.println(currentNode.value);
+				currentNode = currentNode.rightChildNode;
+			}
+		}
 	}
 
 	// 前序遍历
