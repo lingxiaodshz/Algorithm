@@ -116,13 +116,34 @@ class BinaryTree {
 	}
 
 	// 前序遍历
-	public void preOrderTraverse() {
+	public void preOrderTraverse(Node node) {
+		if (node == null) {
+			return;
+		}
+		System.out.println(node.value);
+		preOrderTraverse(node.leftChildNode);
+		preOrderTraverse(node.rightChildNode);
 
 	}
 
 	// 前序遍历非递归操作
-	public void preOrderByStack() {
-
+	public void preOrderByStack(Node node) {
+		if (node == null) {
+			return;
+		}
+		Stack<Node> stack = new Stack<Node>();
+		Node currentNode = node;
+		while (currentNode != null || !stack.isEmpty()) {
+			while (currentNode != null) {
+				stack.push(currentNode);
+				System.out.println(currentNode.value);
+				currentNode = currentNode.leftChildNode;
+			}
+			if (!stack.isEmpty()) {
+				currentNode = stack.pop();
+				currentNode = currentNode.rightChildNode;
+			}
+		}
 	}
 
 	// 后序遍历
