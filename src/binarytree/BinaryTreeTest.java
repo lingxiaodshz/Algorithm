@@ -147,13 +147,38 @@ class BinaryTree {
 	}
 
 	// 后序遍历
-	public void postOrderTraverse() {
-
+	public void postOrderTraverse(Node node) {
+		if (node != null) {
+			return;
+		}
+		postOrderTraverse(node.leftChildNode);
+		postOrderTraverse(node.rightChildNode);
+		System.out.println(node.value);
 	}
 
 	// 后序遍历非递归操作
-	public void postOrderByStack() {
-
+	public void postOrderByStack(Node node) {
+		if (node != null) {
+			return;
+		}
+		Node currentNode = node;
+		Node rightChildNode = null; //用来标记右子树是否已经走过
+		Stack<Node> stack = new Stack<Node>();
+		while (currentNode != null || !stack.isEmpty()) {
+			while (currentNode != null) {
+				stack.push(currentNode);
+				currentNode = currentNode.leftChildNode;
+			}
+			if (!stack.isEmpty()) {
+				currentNode = stack.peek().rightChildNode;
+				if (currentNode == null || currentNode == rightChildNode) {
+					currentNode = stack.pop();
+					System.out.println(currentNode.value);
+					rightChildNode = currentNode;
+					currentNode = null;
+				}
+			}
+		}
 	}
 
 	// 得到最小(大)值
