@@ -162,7 +162,7 @@ class BinaryTree {
 			return;
 		}
 		Node currentNode = node;
-		Node rightChildNode = null; //用来标记右子树是否已经走过
+		Node rightChildNode = null; // 用来标记右子树是否已经走过
 		Stack<Node> stack = new Stack<Node>();
 		while (currentNode != null || !stack.isEmpty()) {
 			while (currentNode != null) {
@@ -182,12 +182,19 @@ class BinaryTree {
 	}
 
 	// 得到最小(大)值
-	public int getMinValue() {
-		return 0;
+	public int getMinValue(Node node) {
+		Node currentNode = node;
+		while (true) {
+			if (currentNode.leftChildNode == null) {
+				return currentNode.value;
+			}
+			currentNode = currentNode.leftChildNode;
+		}
 	}
 
 	// 删除
 	public boolean delete(int value) {
+		
 		return false;
 	}
 
