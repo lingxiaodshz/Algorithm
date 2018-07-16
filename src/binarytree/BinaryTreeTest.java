@@ -193,9 +193,93 @@ class BinaryTree {
 	}
 
 	// É¾³ý
-	public boolean delete(int value) {
-		
-		return false;
+	public boolean delete(Node node, int value) {
+		Node currentNode = node;
+		Node parentNode = null;
+		boolean isLeftChild = true;
+		while (true) {
+			if (currentNode == null) {
+				return false;
+			}
+			if (value == currentNode.value) {
+				break;
+			} else if (value < currentNode.value) {
+				isLeftChild = true;
+				parentNode = currentNode;
+				currentNode = currentNode.leftChildNode;
+			} else {
+				isLeftChild = false;
+				parentNode = currentNode;
+				currentNode = currentNode.rightChildNode;
+			}
+		}
+
+		if (currentNode.leftChildNode == null
+				&& currentNode.rightChildNode == null) {
+			if (currentNode == node) {
+				node = null;
+			} else {
+				if (isLeftChild) {
+					parentNode.leftChildNode = null;
+				} else {
+					parentNode.rightChildNode = null;
+				}
+			}
+
+		} else if (currentNode.leftChildNode == null) {
+			if (currentNode == node) {
+				node = node.rightChildNode;
+			} else {
+				if (isLeftChild) {
+					parentNode.leftChildNode = currentNode.rightChildNode;
+				} else {
+					parentNode.rightChildNode = currentNode.rightChildNode;
+				}
+			}
+		} else if (currentNode.rightChildNode == null) {
+			if (currentNode == node) {
+				node = node.leftChildNode;
+			} else {
+				if (isLeftChild) {
+					parentNode.leftChildNode = currentNode.leftChildNode;
+				} else {
+					parentNode.rightChildNode = currentNode.leftChildNode;
+				}
+			}
+		} else {
+			Node successor = getSuccessor(currentNode);
+			if (currentNode == node) {
+				node = successor;
+			} else {
+				if (isLeftChild) {
+					parentNode.leftChildNode = successor;
+				} else {
+					parentNode.rightChildNode = successor;
+				}
+			}
+		}
+		currentNode = null;
+		return true;
+	}
+
+	private Node getSuccessor(Node delNode) {
+		Node successorNode = delNode;
+		Node successorParentNode = null;
+		Node currentNode = delNode.rightChildNode;
+
+		while (currentNode != null) {
+			successorParentNode = successorNode;
+			successorNode = currentNode;
+			currentNode = currentNode.leftChildNode;
+		}
+
+		if (successorNode != delNode.rightChildNode) {
+			successorParentNode.leftChildNode = successorNode.rightChildNode;
+			successorNode.rightChildNode = delNode.rightChildNode;
+		}
+		successorNode.leftChildNode = delNode.leftChildNode;
+
+		return successorNode;
 	}
 
 }
