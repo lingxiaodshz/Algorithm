@@ -8,7 +8,7 @@ package xiaomi;
  */
 public class Test09 {
     public static void main(String[] args) {
-        int[] arr = {6, 1, 2, 3, 4, 5};
+        int[] arr = {4,5,6,7,8,9,1,2,3};
 
         System.out.print(findMin(arr));
     }
@@ -32,11 +32,7 @@ public class Test09 {
                 return Math.min(nums[left], nums[right]);
             }
             if (nums[mid] > nums[right]) {
-                if (nums[left] < nums[right]) {
-                    right = mid;
-                } else {
-                    left = mid;
-                }
+                left = mid + 1;
             } else {
                 right = mid;
             }
