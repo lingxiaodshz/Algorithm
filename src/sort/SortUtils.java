@@ -43,7 +43,7 @@ public class SortUtils {
 
 	// 堆排序
 	public static void heapSort(int[] arr) {
-		if (arr == null || arr.length == 1) {
+		if (arr == null || arr.length <= 1) {
 			return;
 		}
 		int len = arr.length;
@@ -67,6 +67,24 @@ public class SortUtils {
 			} else {
 				break;
 			}
+		}
+	}
+
+	//插入排序
+	public static void insertSort(int[] arr) {
+		if (arr == null || arr.length <= 1) {
+			return;
+		}
+		int temp;
+		int index;
+		for (int i = 1, len = arr.length; i < len; i++) {
+			temp = arr[i];
+			index = i;
+			while (index >= 0 && temp < arr[index - 1]) {
+				arr[index] = arr[index - 1];
+				index--;
+			}
+			arr[index] = temp;
 		}
 	}
 }

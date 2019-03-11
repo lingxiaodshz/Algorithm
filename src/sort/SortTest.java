@@ -10,7 +10,8 @@ public class SortTest {
 
 //		SortUtils.bubbleSort(arr);
 //		SortUtils.selectSort(arr);
-		SortUtils.heapSort(arr);
+//		SortUtils.heapSort(arr);
+		SortUtils.insertSort(arr);
 		print(arr);
 
 	}
