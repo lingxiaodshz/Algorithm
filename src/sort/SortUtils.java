@@ -87,4 +87,24 @@ public class SortUtils {
 			arr[index] = temp;
 		}
 	}
+
+	public static void shellSort(int[] arr) {
+		if (arr == null || arr.length <= 1) {
+			return;
+		}
+		int len = arr.length;
+		int temp;
+		int index;
+		for (int gap = len / 2; gap > 0; gap /= 2) {
+			for (int i = gap; i < len; i += gap) {
+				index = i;
+				temp = arr[i];
+				while (index >= 0 && temp < arr[index - gap]) {
+					arr[index] = arr[index - gap];
+					index -= gap;
+				}
+				arr[index] = temp;
+			}
+		}
+	}
 }
