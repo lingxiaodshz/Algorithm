@@ -39,9 +39,9 @@ public class LeetCode038 {
     }
 
     private static String generateStr(String str) {
-        if (str.length() < 2) {
-            return "11";
-        }
+//        if (str.length() < 2) {
+//            return "11";
+//        }
         StringBuilder sb = new StringBuilder();
         int count = 1;
         char c;
