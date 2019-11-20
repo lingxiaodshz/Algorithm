@@ -63,7 +63,7 @@ public class LeetCode061 {
         return head;
     }
 
-    public static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
 
