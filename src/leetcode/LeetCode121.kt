@@ -21,7 +21,7 @@ fun main(args: Array<String>) {
     println(maxProfit(list))
 }
 
-fun maxProfit(prices: IntArray): Int {
+private fun maxProfit(prices: IntArray): Int {
     if (prices.isEmpty()) {
         return 0
     }
